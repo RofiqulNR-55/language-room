@@ -1,0 +1,91 @@
+/* public/css/auth.css */
+
+:root {
+    --primary-color: #6f42c1;
+    --secondary-color: #007bff;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+}
+
+.auth-bg {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.auth-card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    max-width: 450px;
+    width: 100%;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.auth-card .card-header {
+    background-color: transparent;
+    border-bottom: none;
+    padding: 2rem 1.5rem 0.5rem 1.5rem;
+    text-align: center;
+}
+
+.auth-card .card-header h3 {
+    font-weight: 700;
+    color: var(--dark-color);
+}
+
+.auth-card .card-body {
+    padding: 1rem 2rem 2rem 2rem;
+}
+
+.form-control {
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    border: 1px solid #ced4da;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(111, 66, 193, 0.25);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    font-weight: 600;
+    padding: 0.85rem 1rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #5a349a;
+    border-color: #5a349a;
+    transform: translateY(-2px);
+}
+
+.auth-switch-link {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-switch-link:hover {
+    text-decoration: underline;
+}

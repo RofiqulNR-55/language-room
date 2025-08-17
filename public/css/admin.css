@@ -1,0 +1,62 @@
+/* public/css/admin.css */
+
+:root {
+    --primary-color: #4e73df; /* Biru Admin */
+    --light-color: #f8f9fc;   /* Warna latar halaman */
+    --dark-text: #5a5c69;    /* Warna teks gelap */
+}
+
+body {
+    overflow-x: hidden;
+    background-color: var(--light-color);
+}
+
+#wrapper {
+    display: flex;
+}
+
+#sidebar-wrapper {
+    min-height: 100vh;
+    width: 250px;
+    transition: margin .25s ease-out;
+    background-color: #ffffff; /* BARU: Latar belakang sidebar putih */
+    border-right: 1px solid #e3e6f0; /* Garis pemisah tipis */
+}
+
+#sidebar-wrapper .sidebar-heading {
+    padding: 1rem 1.25rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color); /* Warna brand jadi biru */
+}
+
+#sidebar-wrapper .list-group-item {
+    border: none;
+    padding: 1rem 1.25rem;
+    color: var(--dark-text); /* BARU: Warna link jadi gelap */
+    transition: background-color 0.2s, color 0.2s;
+    font-weight: 500;
+}
+
+#sidebar-wrapper .list-group-item:hover {
+    background-color: #f8f9fc; /* Sedikit abu-abu saat di-hover */
+    color: var(--primary-color);
+}
+
+#sidebar-wrapper .list-group-item.active {
+    background-color: var(--primary-color);
+    color: white; /* Teks jadi putih saat aktif */
+}
+
+#page-content-wrapper {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.navbar {
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: -250px;
+}

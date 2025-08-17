@@ -1,0 +1,51 @@
+/* Media Pembelajaran Custom Styles */
+.media-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+.media-card {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+}
+.media-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+}
+.media-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+.media-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+.media-desc {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+}
+.media-btn {
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    transition: background 0.2s, color 0.2s;
+}
+.media-btn.modul { background: #2563eb; color: #fff; }
+.media-btn.modul:hover { background: #1d4ed8; }
+.media-btn.video { background: #f59e42; color: #fff; }
+.media-btn.video:hover { background: #d97706; }
+.media-btn.kuis { background: #facc15; color: #333; }
+.media-btn.kuis:hover { background: #eab308; color: #222; }
+.media-btn.chatbot { background: #22c55e; color: #fff; }
+.media-btn.chatbot:hover { background: #16a34a; }
+.media-btn.progress { background: #38bdf8; color: #fff; }
+.media-btn.progress:hover { background: #0ea5e9; } 

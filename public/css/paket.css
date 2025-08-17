@@ -1,0 +1,94 @@
+/* public/css/paket.css */
+
+/* --- Variabel Warna & Font Dasar --- */
+:root {
+    --primary-color: #6f42c1; /* Ungu */
+    --secondary-color: #007bff; /* Biru */
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+    --font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--light-color);
+    font-family: var(--font-family);
+}
+
+/* --- Judul Halaman --- */
+.modern-title {
+    font-weight: 700;
+    color: var(--dark-color);
+    margin-bottom: 0.5rem;
+}
+
+.title-highlight {
+    color: var(--primary-color);
+}
+
+.text-muted {
+    font-size: 1.1rem;
+}
+
+/* --- Tombol Kembali --- */
+.btn-outline-secondary {
+    border-radius: 20px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-secondary:hover {
+    background-color: var(--secondary-color);
+    color: white;
+    border-color: var(--secondary-color);
+}
+
+
+/* --- Kartu Paket --- */
+.card-paket {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 15px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-paket:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+.paket-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+}
+
+.card-paket .badge {
+    font-size: 0.8rem;
+    padding: 0.5em 1em;
+    border-radius: 15px;
+}
+
+.card-paket h4 {
+    color: var(--dark-color);
+}
+
+.btn-paket {
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    font-weight: 600;
+    border-radius: 50px;
+    padding: 12px 30px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(111, 66, 193, 0.3);
+}
+
+.btn-paket:hover {
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(111, 66, 193, 0.4);
+}

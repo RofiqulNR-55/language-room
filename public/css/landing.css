@@ -1,0 +1,437 @@
+/* public/css/landing.css */
+
+/* --- Variabel Warna & Font Dasar --- */
+:root {
+    --primary-color: #6f42c1; /* Ungu */
+    --secondary-color: #007bff; /* Biru */
+    --accent-color: #ffe066; /* Emas/Kuning */
+    --dark-color: #343a40;
+    --light-color: #f8f9fa;
+    --font-family: 'Poppins', sans-serif;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--light-color);
+    color: var(--dark-color);
+}
+
+/* --- Animasi Saat Scroll --- */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    min-height: 90vh;
+    padding: 2rem;
+}
+
+.hero-content h1 {
+    font-weight: 700;
+    font-size: 3.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.hero-content .lead {
+    font-size: 1.25rem;
+    max-width: 600px;
+}
+
+.hero-illustration {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Tombol Call-to-Action (CTA) --- */
+.cta-btn {
+    background-color: var(--accent-color);
+    color: var(--dark-color);
+    font-weight: 600;
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: none;
+}
+
+.cta-btn:hover {
+    background-color: #fff;
+    color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* --- Judul Section --- */
+.section-title {
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    color: var(--dark-color);
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+
+
+/* --- Kartu Paket Belajar --- */
+.paket-card {
+    background-color: #ffffff;
+    border: 1px solid #0000ff; /* BARU: Menambahkan garis tipis di pinggir kartu */
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; /* Tambah transisi untuk border */
+    overflow: hidden;
+}
+
+.paket-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 30px 30px rgba(0, 0, 0, 0.12) !important;
+    border-color: var(--primary-color); /* BARU: Warna garis berubah jadi ungu saat disentuh */
+}
+
+.paket-card .card-body {
+    padding: 2rem;
+}
+
+.paket-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+}
+
+.btn-paket {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 500;
+    border-radius: 50px;
+    padding: 10px 25px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-paket:hover {
+    background: var(--secondary-color);
+    color: white;
+}
+
+/* --- Section Tentang Kami  --- */
+.about-section {
+    background-color: #ffffff;
+    padding: 3rem 2.5rem;
+    border-radius: 20px;
+    margin-top: 4rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); /* Bayangan halus */
+    border: 1px solid #e9ecef; /* Garis tipis untuk definisi */
+    display: flex;
+    align-items: center;
+}
+
+.about-icon-wrapper {
+    flex-shrink: 0;
+    margin-right: 2.5rem;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2.5rem;
+    box-shadow: 0 5px 15px rgba(111, 66, 193, 0.4);
+}
+
+.about-icon {
+    font-size: inherit;
+    color: inherit;
+}
+
+/* public/css/landing.css */
+
+/* --- Variabel Warna & Font Dasar --- */
+:root {
+    --primary-color: #6f42c1; /* Ungu */
+    --secondary-color: #007bff; /* Biru */
+    --accent-color: #ffe066; /* Emas/Kuning */
+    --dark-color: #343a40;
+    --light-color: #f8f9fa;
+    --font-family: 'Poppins', sans-serif;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--light-color);
+    color: var(--dark-color);
+}
+
+/* --- Animasi Saat Scroll --- */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    min-height: 90vh;
+    padding: 2rem;
+}
+
+.hero-content h1 {
+    font-weight: 700;
+    font-size: 3.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.hero-content .lead {
+    font-size: 1.25rem;
+    max-width: 600px;
+}
+
+.hero-illustration {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Tombol Call-to-Action (CTA) --- */
+.cta-btn {
+    background-color: var(--accent-color);
+    color: var(--dark-color);
+    font-weight: 600;
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: none;
+}
+
+.cta-btn:hover {
+    background-color: #fff;
+    color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* --- Judul Section --- */
+.section-title {
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    color: var(--dark-color);
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+
+
+/* --- Kartu Paket Belajar --- */
+.paket-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0; /* Garis tipis agar lebih rapi */
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    overflow: hidden;
+}
+
+.paket-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+    border-color: var(--primary-color);
+}
+
+.paket-card .card-body {
+    padding: 2rem;
+}
+
+.paket-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+}
+
+.btn-paket {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 500;
+    border-radius: 50px;
+    padding: 10px 25px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-paket:hover {
+    background: var(--secondary-color);
+    color: white;
+}
+
+/* --- Section Tentang Kami --- */
+.about-section {
+    background-color: white;
+    padding: 4rem 2rem;
+    border-radius: 15px;
+    margin-top: 4rem;
+}
+
+.about-icon {
+    font-size: 4rem;
+    color: var(--secondary-color);
+}
+
+/* --- Galeri (Sudah Diperbaiki dengan CSS Grid) --- */
+.gallery-section {
+    padding: 4rem 0;
+    background-color: #ffffff;
+}
+
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 kolom di desktop */
+    grid-auto-rows: 250px; /* Tinggi dasar setiap baris */
+    grid-gap: 1.5rem; /* Jarak antar item */
+}
+
+.gallery-item {
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+}
+
+.gallery-item:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.gallery-item img, 
+.gallery-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Memastikan gambar/video mengisi area tanpa distorsi */
+}
+
+/* Penyesuaian Ukuran Item (Kunci Tata Letak Rapi) */
+.item-potrait {
+    grid-row: span 2; /* Membuat item ini setinggi 2 baris */
+}
+
+.item-landscape {
+    grid-column: span 2; /* Membuat item ini selebar 2 kolom */
+}
+
+.gallery-item .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+    color: white;
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    opacity: 1;
+}
+
+.gallery-item .overlay-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+/* Penyesuaian untuk layar lebih kecil */
+@media (max-width: 992px) {
+    .gallery-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 kolom untuk tablet */
+    }
+    /* Hapus penyesuaian landscape di tablet agar rapi */
+    .item-landscape {
+        grid-column: span 1;
+    }
+}
+
+@media (max-width: 576px) {
+    .gallery-container {
+        grid-template-columns: 1fr; /* 1 kolom untuk mobile */
+        grid-auto-rows: 300px;
+    }
+    /* Hapus penyesuaian potrait di mobile */
+    .item-potrait {
+        grid-row: span 1;
+    }
+}
+
+/* Overlay Ikon Play untuk Video */
+.gallery-item.video-item::after {
+    content: '\f144';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4rem;
+    color: white;
+    opacity: 0.8;
+    text-shadow: 0 0 15px rgba(0,0,0,0.7);
+    pointer-events: none;
+}
+/* --- Section Keunggulan --- */
+.keunggulan-item i {
+    color: var(--primary-color);
+}
+
+/* --- FAQ Accordion --- */
+.accordion-item {
+    border: 1px solid #ddd;
+    border-radius: 10px !important;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.accordion-button {
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.accordion-button:focus {
+    box-shadow: 0 0 0 0.25rem rgba(111, 66, 193, 0.25);
+}
+
+/* --- Final CTA Section --- */
+.final-cta {
+    background: linear-gradient(90deg, #6f42c1 60%, #007bff 100%);
+    color: #fff;
+    padding: 3rem;
+    border-radius: 20px;
+}

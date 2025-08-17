@@ -1,0 +1,63 @@
+/* public/css/app-layout.css */
+
+:root {
+    --primary-color: #6f42c1; /* Warna ungu dari landing page */
+    --font-family: 'Poppins', sans-serif;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: #f8f9fa;
+}
+
+/* --- Kustomisasi Navbar --- */
+.navbar-custom {
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.navbar-custom .navbar-brand {
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.navbar-custom .nav-link {
+    color: #343a40;
+    font-weight: 500;
+}
+
+.navbar-custom .nav-link:hover,
+.navbar-custom .nav-link.active {
+    color: var(--primary-color);
+}
+
+/* Tombol Daftar (CTA) */
+.navbar-custom .btn-sm {
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+}
+
+/* --- Kustomisasi Footer --- */
+.footer-custom {
+    background-color: #343a40;
+    color: #f8f9fa;
+}
+
+.navbar-custom .form-control-search {
+    border-radius: 50px;
+    border: 1px solid #dee2e6;
+    transition: all 0.3s ease;
+    width: 250px; /* Lebar awal */
+}
+
+.navbar-custom .form-control-search:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(111, 66, 193, 0.25);
+    width: 300px; /* Sedikit melebar saat di-klik */
+}
+
+.navbar-custom .btn-search {
+    border-radius: 50px;
+}
