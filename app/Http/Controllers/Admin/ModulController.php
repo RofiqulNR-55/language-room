@@ -17,7 +17,8 @@ class ModulController extends Controller
 
     public function create()
     {
-        return view('admin.modul.create');
+        $folders = Modul::whereNotNull('folder')->pluck('folder')->unique();
+        return view('admin.modul.create', compact('folders'));
     }
 
     public function store(Request $request)
@@ -25,16 +26,22 @@ class ModulController extends Controller
         $request->validate([
             'judul' => 'required|string|max:255',
             'jenjang' => 'required|string|in:sd,smp,sma',
+            'folder' => 'required|string|max:255',
             'file' => 'required|mimes:pdf|max:2048',
         ]);
 
         // Simpan file ke storage/app/public/modul
         $path = $request->file('file')->store('modul', 'public');
 
+        $folder = $request->folder;
+        if ($folder === '__new__') {
+            $folder = $request->folder_new;
+        }
         // Simpan ke database
         Modul::create([
             'judul' => $request->judul,
             'jenjang' => $request->jenjang,
+            'folder' => $folder,
             'file' => $path, // path: modul/namafile.pdf
         ]);
 
@@ -43,7 +50,8 @@ class ModulController extends Controller
 
     public function edit(Modul $modul)
     {
-        return view('admin.modul.edit', compact('modul'));
+        $folders = Modul::whereNotNull('folder')->pluck('folder')->unique();
+        return view('admin.modul.edit', compact('modul', 'folders'));
     }
 
     public function update(Request $request, Modul $modul)
@@ -51,6 +59,7 @@ class ModulController extends Controller
         $request->validate([
             'judul' => 'required',
             'jenjang' => 'required|in:sd,smp,sma',
+            'folder' => 'required|string|max:255',
             'file' => 'nullable|mimes:pdf|max:2048',
         ]);
 
@@ -63,8 +72,13 @@ class ModulController extends Controller
             $modul->file = $path;
         }
 
+        $folder = $request->folder;
+        if ($folder === '__new__') {
+            $folder = $request->folder_new;
+        }
         $modul->judul = $request->judul;
         $modul->jenjang = $request->jenjang;
+        $modul->folder = $folder;
         $modul->save();
 
         return redirect()->route('admin.modul.index')->with('success', 'Modul berhasil diperbarui');

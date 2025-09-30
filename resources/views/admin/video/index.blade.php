@@ -10,12 +10,14 @@
 
     <a href="{{ route('admin.video.create') }}" class="btn btn-success mb-3">Tambah Video</a>
 
-    <table class="table table-bordered table-striped">
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
         <thead class="table-dark">
             <tr>
                 <th>#</th>
                 <th>Judul</th>
                 <th>Jenjang</th>
+                <th>Folder</th>
                 <th>Tipe</th>
                 <th>Preview</th>
                 <th>Aksi</th>
@@ -27,10 +29,11 @@
                     <td>{{ $index + 1 }}</td>
                     <td>{{ $video->judul }}</td>
                     <td>{{ strtoupper($video->jenjang) }}</td>
+                    <td>{{ $video->folder }}</td>
                     <td>{{ ucfirst($video->tipe) }}</td>
                     <td style="max-width: 300px;">
                         @if (Str::startsWith($video->url, 'http'))
-                            <iframe width="100%" height="150" src="{{ $video->url }}" frameborder="0" allowfullscreen></iframe>
+                            <iframe width="560" height="315" src="{{ $video->url }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         @else
                             <video width="100%" height="150" controls>
                                 <source src="{{ asset('storage/' . $video->url) }}" type="video/mp4">
@@ -49,7 +52,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="6" class="text-center">Belum ada video.</td>
+                    <td colspan="7" class="text-center">Belum ada video.</td>
                 </tr>
             @endforelse
         </tbody>

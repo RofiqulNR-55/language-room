@@ -27,6 +27,18 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="folder">Folder/Kategori Video</label>
+                    <select name="folder" id="folder" class="form-control" onchange="toggleFolderInput(this.value)">
+                        <option value="">-- Pilih Folder/Kategori --</option>
+                        @foreach($folders as $folder)
+                            <option value="{{ $folder }}" {{ $video->folder == $folder ? 'selected' : '' }}>{{ $folder }}</option>
+                        @endforeach
+                        <option value="__new__">+ Buat Folder Baru</option>
+                    </select>
+                    <input type="text" name="folder_new" id="folder_new" class="form-control mt-2 d-none" placeholder="Nama folder baru">
+                </div>
+
+                <div class="form-group">
                     <label for="tipe">Tipe Video</label>
                     <select name="tipe" id="tipe" class="form-control" onchange="toggleInput()" required>
                         <option value="link" {{ $video->tipe === 'link' ? 'selected' : '' }}>Link YouTube</option>
@@ -34,7 +46,7 @@
                     </select>
                 </div>
 
-                <div class="form-group" id="linkInput" style="{{ $video->tipe === 'link' ? '' : 'display: none;' }}">
+                <div class="form-group" id="linkInput" style="{{ $video->tipe === 'link' }}">
                     <label for="url">URL Video YouTube</label>
                     <input type="url" name="url" id="url" class="form-control" value="{{ old('url', $video->tipe === 'link' ? $video->url : '') }}">
                 </div>
@@ -66,8 +78,21 @@
         document.getElementById('linkInput').style.display = (tipe === 'link') ? '' : 'none';
         document.getElementById('fileInput').style.display = (tipe === 'file') ? '' : 'none';
     }
-
-    // Pastikan form tampil sesuai nilai awal saat halaman diload
-    document.addEventListener('DOMContentLoaded', toggleInput);
+    function toggleFolderInput(val) {
+        const input = document.getElementById('folder_new');
+        if (val === '__new__') {
+            input.classList.remove('d-none');
+            input.required = true;
+        } else {
+            input.classList.add('d-none');
+            input.required = false;
+        }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        toggleInput();
+        document.getElementById('folder').addEventListener('change', function() {
+            toggleFolderInput(this.value);
+        });
+    });
 </script>
 @endsection

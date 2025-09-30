@@ -12,7 +12,7 @@
                     <h4 class="mb-0">Tambah Video Pembelajaran</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.video.index') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.video.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         {{-- Judul --}}
@@ -31,16 +31,31 @@
                             </select>
                         </div>
 
-                        {{-- Tipe --}}
+                        {{-- Folder/Kategori Video --}}
+                        <div class="mb-3">
+                            <label for="folder" class="form-label">Folder/Kategori Video</label>
+                            <select name="folder" id="folder" class="form-select" onchange="toggleFolderInput(this.value)">
+                                <option value="">-- Pilih Folder/Kategori --</option>
+                                @foreach($folders as $folder)
+                                    <option value="{{ $folder }}">{{ $folder }}</option>
+                                @endforeach
+                                <option value="__new__">+ Buat Folder Baru</option>
+                            </select>
+                            <input type="text" name="folder_new" id="folder_new" class="form-control mt-2 d-none" placeholder="Nama folder baru">
+                        </div>
+
+
+                        {{-- Tipe Video --}}
                         <div class="mb-3">
                             <label for="tipe" class="form-label">Tipe Video</label>
-                            <select name="tipe" id="tipe" class="form-select" required onchange="toggleInput(this.value)">
+                            <select name="tipe" id="tipe" class="form-select" onchange="toggleInput(this.value)" required>
                                 <option value="link">Link YouTube</option>
                                 <option value="file">Upload File</option>
                             </select>
                         </div>
 
                         {{-- Input Link --}}
+
                         <div class="mb-3" id="linkInput">
                             <label for="url" class="form-label">Link YouTube</label>
                             <input type="url" name="url" id="url" class="form-control" placeholder="Masukkan link YouTube">
@@ -48,8 +63,8 @@
 
                         {{-- Input File --}}
                         <div class="mb-3 d-none" id="fileInput">
-                            <label for="file" class="form-label">Upload File Video (mp4)</label>
-                            <input type="file" name="file" id="file" class="form-control">
+                            <label for="video_file" class="form-label">Upload File Video (mp4)</label>
+                            <input type="file" name="video_file" id="video_file" class="form-control" accept="video/mp4">
                         </div>
 
                         <div class="d-flex justify-content-between">
@@ -66,18 +81,42 @@
 @endsection
 
 @section('scripts')
+
 <script>
 function toggleInput(value) {
     const linkInput = document.getElementById('linkInput');
     const fileInput = document.getElementById('fileInput');
-
     if (value === 'file') {
         linkInput.classList.add('d-none');
         fileInput.classList.remove('d-none');
+        document.getElementById('url').required = false;
+        document.getElementById('video_file').required = true;
     } else {
         linkInput.classList.remove('d-none');
         fileInput.classList.add('d-none');
+        document.getElementById('url').required = true;
+        document.getElementById('video_file').required = false;
     }
 }
+function toggleFolderInput(val) {
+    const input = document.getElementById('folder_new');
+    if (val === '__new__') {
+        input.classList.remove('d-none');
+        input.required = true;
+    } else {
+        input.classList.add('d-none');
+        input.required = false;
+    }
+}
+document.addEventListener('DOMContentLoaded', function() {
+    const tipeSelect = document.getElementById('tipe');
+    toggleInput(tipeSelect.value);
+    tipeSelect.addEventListener('change', function() {
+        toggleInput(this.value);
+    });
+    document.getElementById('folder').addEventListener('change', function() {
+        toggleFolderInput(this.value);
+    });
+});
 </script>
 @endsection

@@ -10,7 +10,8 @@
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <table class="table">
+    <div class="table-responsive">
+        <table class="table">
         <thead>
             <tr>
                 <th>Judul</th>

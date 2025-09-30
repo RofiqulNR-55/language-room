@@ -14,8 +14,6 @@ class VerifikasiTransaksiController extends Controller
     public function index()
     {
         $transaksis = Transaction::with(['user', 'paket'])
-                                  // Menampilkan transaksi yang perlu perhatian: pending atau failed
-                                  ->whereIn('status', ['pending', 'failed'])
                                   ->latest() // Mengurutkan dari yang terbaru
                                   ->get();
                                   

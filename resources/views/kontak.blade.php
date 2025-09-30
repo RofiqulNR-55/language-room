@@ -1,75 +1,104 @@
 @extends('layouts.app')
 
 @section('content')
-{{-- Untuk hasil terbaik, tambahkan link Google Fonts ini di dalam <head> pada file layouts/app.blade.php Anda --}}
-{{-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> --}}
-{{-- Jangan lupa tambahkan juga link Font Awesome jika belum ada --}}
+{{-- Pastikan Font Awesome sudah terpasang di layouts/app.blade.php untuk ikon --}}
 {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> --}}
 
-<link rel="stylesheet" href="{{ asset('css/kontak.css') }}">
+{{-- Kita tambahkan sedikit CSS custom untuk sentuhan akhir --}}
+<style>
+    /* Sedikit style tambahan untuk mempercantik tampilan Bootstrap */
+    .contact-hero {
+        background: linear-gradient(45deg, #6f42c1, #2575fc);
+        padding: 4rem 0;
+        border-radius: .75rem;
+    }
+    .contact-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+        background-color: #e9ecef; /* Warna latar ikon yang soft */
+        color: #6f42c1; /* Warna ikon utama */
+    }
+    .card-contact {
+        border: none;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card-contact:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15)!important;
+    }
+    .map-container {
+        border-radius: .75rem;
+        overflow: hidden;
+    }
+</style>
 
-<div class="contact-header text-center">
-    <div class="container">
-        <h1>Hubungi Kami</h1>
-        <p class="lead">Kami siap mendengar pertanyaan, saran, dan masukan dari Anda.</p>
+<main class="container my-5">
+    {{-- BAGIAN HEADER --}}
+    <div class="contact-hero text-white text-center mb-5 shadow">
+        <h1 class="display-4 fw-bold">Hubungi Kami</h1>
+        <p class="lead">Kami selalu siap membantu. Temukan kami melalui informasi di bawah ini.</p>
     </div>
-</div>
 
-<div class="container py-5">
     <div class="row g-4">
-        <div class="col-lg-5">
-            <div class="contact-info-card">
-                <h4 class="mb-4 fw-bold">Informasi Kontak</h4>
-                <div class="info-item">
-                    <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
-                    <div>
-                        <strong>Alamat</strong>
-                        <p class="mb-0">Jl. Pendidikan No. 123, Jakarta Selatan, Indonesia</p>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <div class="info-icon"><i class="fas fa-envelope"></i></div>
-                    <div>
-                        <strong>Email</strong>
-                        <p class="mb-0">languangeroom@gmail.com</p>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <div class="info-icon"><i class="fas fa-phone"></i></div>
-                    <div>
-                        <strong>Telepon</strong>
-                        <p class="mb-0"> 0878-6392-2794</p>
-                    </div>
+        {{-- KOLOM KIRI - INFORMASI DETAIL --}}
+        <div class="col-lg-6">
+            <div class="card card-contact h-100 shadow-sm">
+                <div class="card-body p-4">
+                    <h3 class="card-title fw-bold mb-4">Detail Kontak</h3>
+                    
+                    {{-- Menggunakan List Group Bootstrap untuk tampilan rapi --}}
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex align-items-center border-0 px-0">
+                            <div class="contact-icon rounded-circle d-flex justify-content-center align-items-center me-3">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Alamat</h6>
+                                <p class="mb-0 text-muted">Jl. Pendidikan No. 123, Kota Harapan</p>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex align-items-center border-0 px-0 pt-3">
+                            <div class="contact-icon rounded-circle d-flex justify-content-center align-items-center me-3">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Email</h6>
+                                <a href="mailto:languangeroom@gmail.com" class="text-decoration-none">languangeroom@gmail.com</a>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex align-items-center border-0 px-0 pt-3">
+                            <div class="contact-icon rounded-circle d-flex justify-content-center align-items-center me-3">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">WhatsApp</h6>
+                                <a href="https://wa.me/6287704720846" target="_blank" class="text-decoration-none">087704720846</a>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
 
-        <div class="col-lg-7">
-            <div class="contact-form-card">
-                 <h4 class="mb-4 fw-bold">Kirim Pesan</h4>
-                <form action="#" method="POST">
-                    @csrf
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="nama" class="form-label">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="nama" name="nama" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="email" class="form-label">Alamat Email</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="subjek" class="form-label">Subjek</label>
-                        <input type="text" class="form-control" id="subjek" name="subjek" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="pesan" class="form-label">Pesan Anda</label>
-                        <textarea class="form-control" id="pesan" name="pesan" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-submit w-100">Kirim Pesan</button>
-                </form>
+        {{-- KOLOM KANAN - PETA LOKASI --}}
+        <div class="col-lg-6">
+            <div class="card card-contact h-100 shadow-sm">
+                <div class="card-body p-4">
+                     <h3 class="card-title fw-bold mb-4">Lokasi Kami</h3>
+                     <div class="map-container shadow-inner">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322221!2d106.8195888147682!3d-6.194741995514697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5390917b759%3A0x6b45e67356080477!2sMonumen%20Nasional!5e0!3m2!1sid!2sid!4v1678889123456!5m2!1sid!2sid"
+                            width="100%" 
+                            height="340" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy">
+                        </iframe>
+                     </div>
+                </div>
             </div>
         </div>
     </div>
+</main>
 @endsection

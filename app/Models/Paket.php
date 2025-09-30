@@ -9,5 +9,13 @@ class Paket extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama', 'tipe', 'harga', 'deskripsi', 'kategori'];
+    // app/Models/Paket.php
+
+protected $fillable = [
+    'nama',
+    'tipe',
+    'kategori',
+    'harga',
+    'deskripsi',
+];
 }

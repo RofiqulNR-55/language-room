@@ -10,7 +10,7 @@
         --warning-color: #f6c23e;
         --danger-color: #e74a3b;
         --light-color: #f8f9fa;
-    }
+    } 
 
     .payment-container {
         background-color: var(--light-color);

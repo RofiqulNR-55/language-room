@@ -78,13 +78,22 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::post('/verifikasi/{id}/reject', [VerifikasiTransaksiController::class, 'reject'])->name('verifikasi.reject');
     Route::delete('/verifikasi/{id}', [VerifikasiTransaksiController::class, 'destroy'])->name('verifikasi.destroy');
     
+    // Perbaikan ada di sini: HANYA SATU DEFINISI resource paket
     Route::resource('paket', PaketController::class);
     Route::resource('modul', AdminModulController::class);
     Route::resource('video', AdminVideoController::class);
     Route::resource('quiz', AdminQuizController::class)->except(['show']);
+    Route::get('langganan', [\App\Http\Controllers\Admin\LanggananController::class, 'index'])->name('langganan.index');
+    Route::post('langganan/{id}/cancel', [\App\Http\Controllers\Admin\LanggananController::class, 'cancel'])->name('langganan.cancel');
 });
+
+Route::post('/midtrans/callback', [MidtransCallbackController::class, 'callback'])->name('midtrans.callback');
 
 //kontak 
 Route::get('/kontak', [ContactController::class, 'index'])->name('kontak');
 
-    Route::post('/ai-tutor/chat', [ChatbotController::class, 'chat'])->name('chatbot.chat');
+Route::post('/ai-tutor/chat', [ChatbotController::class, 'chat'])->name('chatbot.chat');
+
+// Ganti atau tambahkan rute ini
+Route::get('/kontak', [ContactController::class, 'index'])->name('kontak');
+Route::post('/kontak/send', [ContactController::class, 'send'])->name('kontak.send');

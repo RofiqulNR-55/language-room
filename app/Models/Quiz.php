@@ -14,5 +14,6 @@ class Quiz extends Model
         'title',
         'quiz_link',
         'jenjang',
+        'folder',
     ];
 }

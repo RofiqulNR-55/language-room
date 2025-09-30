@@ -37,17 +37,19 @@ class MidtransCallbackController extends Controller
             // 5. Lakukan update status transaksi
             if ($transaction) {
                 if ($status == 'capture' || $status == 'settlement') {
-                    // Jika statusnya 'capture' (untuk kartu kredit) atau 'settlement'
                     $transaction->status = 'success';
+                    // Set tanggal mulai dan expired jika belum ada
+                    if (!$transaction->start_at || !$transaction->expired_at) {
+                        $transaction->start_at = now();
+                        // Ambil durasi dari paket (default 30 hari jika null)
+                        $durasi = $transaction->paket && $transaction->paket->durasi ? $transaction->paket->durasi : 30;
+                        $transaction->expired_at = now()->addDays($durasi);
+                    }
                 } elseif ($status == 'pending') {
-                    // Status masih pending
                     $transaction->status = 'pending';
                 } elseif ($status == 'deny' || $status == 'expire' || $status == 'cancel') {
-                    // Jika status 'deny', 'expire', atau 'cancel', anggap sebagai 'failed'
                     $transaction->status = 'failed';
                 }
-                
-                // Simpan perubahan
                 $transaction->save();
             }
 

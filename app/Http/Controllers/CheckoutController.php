@@ -84,5 +84,4 @@ class CheckoutController extends Controller
         ]);
     }
 
-    // Fungsi midtransCallback sudah dipindahkan ke MidtransCallbackController
 }

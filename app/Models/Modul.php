@@ -18,6 +18,7 @@ class Modul extends Model
     protected $fillable = [
         'judul',
         'jenjang',
+        'folder',
         'file',
     ];
 }

@@ -13,17 +13,31 @@ class VideoController extends Controller
      * @param  string  $paket
      * @return \Illuminate\View\View
      */
-    public function index($paket)
+    public function index($paket, Request $request)
     {
-        // Ambil semua data video yang jenjangnya sesuai dengan paket yang diakses
-        $videos = Video::where('jenjang', $paket)->latest()->get();
+        // Ambil semua folder unik dari video jenjang tersebut
+        $folders = Video::where('jenjang', $paket)
+            ->whereNotNull('folder')
+            ->pluck('folder')
+            ->unique();
 
-        // Kirim data ke view 'video.index'.
-        // Variabel $paket dari URL dikirim ke view dengan nama 'jenjang'
-        // agar sesuai dengan yang diharapkan oleh file view.
+        // Jika ada folder dipilih, tampilkan video di folder itu
+        $selectedFolder = $request->query('folder');
+        $videos = collect();
+        if ($selectedFolder) {
+            $videos = Video::where('jenjang', $paket)
+                ->where('folder', $selectedFolder)
+                ->get();
+        } else {
+            // Ambil semua data video yang jenjangnya sesuai dengan paket yang diakses
+            $videos = Video::where('jenjang', $paket)->latest()->get();
+        }
+
         return view('video.index', [
             'videos' => $videos,
-            'jenjang' => $paket // <-- INI BAGIAN YANG DIPERBAIKI
+            'jenjang' => $paket,
+            'folders' => $folders,
+            'selectedFolder' => $selectedFolder,
         ]);
     }
 }

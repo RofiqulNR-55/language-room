@@ -13,32 +13,57 @@
                         @csrf
                         <div class="mb-3">
                             <label for="nama" class="form-label">Nama Paket</label>
-                            <input type="text" name="nama" id="nama" class="form-control" value="{{ old('nama') }}" required>
+                            <input type="text" name="nama" id="nama" class="form-control @error('nama') is-invalid @enderror" value="{{ old('nama') }}" required>
+                            @error('nama')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="tipe" class="form-label">Tipe</label>
-                            <select name="tipe" id="tipe" class="form-select" required>
+                            <select name="tipe" id="tipe" class="form-select @error('tipe') is-invalid @enderror" required>
                                 <option value="" disabled selected>-- Pilih Tipe --</option>
                                 <option value="online" {{ old('tipe') == 'online' ? 'selected' : '' }}>Online</option>
                                 <option value="offline" {{ old('tipe') == 'offline' ? 'selected' : '' }}>Offline</option>
                             </select>
+                            @error('tipe')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="kategori" class="form-label">Kategori</label>
-                            <select name="kategori" id="kategori" class="form-select" required>
+                            <select name="kategori" id="kategori" class="form-select @error('kategori') is-invalid @enderror" required>
                                 <option value="" disabled selected>-- Pilih Kategori --</option>
                                 <option value="SD" {{ old('kategori') == 'SD' ? 'selected' : '' }}>SD</option>
                                 <option value="SMP" {{ old('kategori') == 'SMP' ? 'selected' : '' }}>SMP</option>
                                 <option value="SMA" {{ old('kategori') == 'SMA' ? 'selected' : '' }}>SMA</option>
                             </select>
+                            @error('kategori')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="harga" class="form-label">Harga (Rp)</label>
-                            <input type="number" name="harga" id="harga" class="form-control" value="{{ old('harga') }}" required>
+                            <input type="number" name="harga" id="harga" class="form-control @error('harga') is-invalid @enderror" value="{{ old('harga') }}" required>
+                            @error('harga')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="deskripsi" class="form-label">Deskripsi</label>
-                            <textarea name="deskripsi" id="deskripsi" class="form-control" rows="3">{{ old('deskripsi') }}</textarea>
+                            <textarea name="deskripsi" id="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" rows="3">{{ old('deskripsi') }}</textarea>
+                            @error('deskripsi')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="d-flex justify-content-end">
                             <a href="{{ route('admin.paket.index') }}" class="btn btn-secondary me-2">Batal</a>

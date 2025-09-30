@@ -10,7 +10,7 @@ class Video extends Model
     use HasFactory;
 
     protected $fillable = [
-        'judul', 'jenjang', 'tipe', 'url',
+        'judul', 'jenjang', 'tipe', 'url', 'folder',
     ];
 }
 

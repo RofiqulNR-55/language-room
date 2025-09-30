@@ -1,0 +1,91 @@
+:root {
+        --primary-color: #4e73df;
+        --success-color: #1cc88a;
+        --warning-color: #f6c23e;
+        --danger-color: #e74a3b;
+        --light-gray: #f8f9fc;
+        --border-color: #e3e6f0;
+    }
+
+    /* Kustomisasi Card Utama */
+    .custom-card {
+        border: none;
+        border-radius: 0.75rem;
+        box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* Kustomisasi Header Tabel */
+    .table thead.custom-header {
+        background: linear-gradient(90deg, var(--primary-color), #36b9cc);
+        color: #ffffff;
+    }
+
+    .table thead.custom-header th {
+        border-bottom: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 600;
+    }
+
+    /* Efek Hover pada Baris Tabel */
+    .table tbody tr {
+        transition: background-color 0.2s ease-in-out;
+    }
+    .table-hover tbody tr:hover {
+        background-color: rgba(78, 115, 223, 0.05);
+    }
+    
+    .table td, .table th {
+        border-top: 1px solid var(--border-color);
+    }
+
+    /* Desain Ulang Badge Status */
+    .status-badge {
+        display: inline-block;
+        padding: 0.4em 0.8em;
+        font-size: 0.8rem;
+        font-weight: 600;
+        border-radius: 50px; /* Membuatnya berbentuk pil */
+        text-align: center;
+        color: #fff;
+    }
+
+    .status-badge.pending {
+        background-color: var(--warning-color);
+        color: #333;
+        box-shadow: 0 0 10px rgba(246, 194, 62, 0.4);
+    }
+    
+    .status-badge.success {
+        background-color: var(--success-color);
+        box-shadow: 0 0 10px rgba(28, 200, 138, 0.4);
+    }
+
+    .status-badge.failed {
+        background-color: var(--danger-color);
+        box-shadow: 0 0 10px rgba(231, 74, 59, 0.4);
+    }
+
+    /* Kustomisasi Pagination */
+    .pagination .page-item .page-link {
+        border: none;
+        border-radius: 50%;
+        margin: 0 5px;
+        color: var(--primary-color);
+        transition: all 0.3s;
+    }
+
+    .pagination .page-item.active .page-link {
+        background-color: var(--primary-color);
+        color: #fff;
+        box-shadow: 0 2px 8px rgba(78, 115, 223, 0.5);
+    }
+    
+    .pagination .page-item:not(.active) .page-link:hover {
+        background-color: #e9ecef;
+    }
+    
+    .pagination .page-item.disabled .page-link {
+        color: #b7b9cc;
+    }

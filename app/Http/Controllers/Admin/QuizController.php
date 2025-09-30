@@ -17,7 +17,8 @@ class QuizController extends Controller
 
     public function create()
     {
-        return view('admin.quiz.create');
+        $folders = Quiz::whereNotNull('folder')->pluck('folder')->unique();
+        return view('admin.quiz.create', compact('folders'));
     }
 
     public function store(Request $request)
@@ -28,14 +29,21 @@ class QuizController extends Controller
             'jenjang' => 'required|in:sd,smp,sma',
         ]);
 
-        Quiz::create($request->all());
+        $folder = $request->folder;
+        if ($folder === '__new__') {
+            $folder = $request->folder_new;
+        }
+        $data = $request->all();
+        $data['folder'] = $folder;
+        Quiz::create($data);
 
         return redirect()->route('quiz.index')->with('success', 'Kuis berhasil ditambahkan.');
     }
 
     public function edit(Quiz $quiz)
     {
-        return view('admin.quiz.edit', compact('quiz'));
+        $folders = Quiz::whereNotNull('folder')->pluck('folder')->unique();
+        return view('admin.quiz.edit', compact('quiz', 'folders'));
     }
 
     public function update(Request $request, Quiz $quiz)
@@ -46,7 +54,13 @@ class QuizController extends Controller
             'jenjang' => 'required|in:sd,smp,sma',
         ]);
 
-        $quiz->update($request->all());
+        $folder = $request->folder;
+        if ($folder === '__new__') {
+            $folder = $request->folder_new;
+        }
+        $data = $request->all();
+        $data['folder'] = $folder;
+        $quiz->update($data);
 
         return redirect()->route('admin.quiz.index')->with('success', 'Kuis berhasil diperbarui.');
     }

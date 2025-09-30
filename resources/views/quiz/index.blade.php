@@ -1,4 +1,4 @@
-    @extends('layouts.app')
+@extends('layouts.app')
 
     @section('title', 'Daftar Kuis Interaktif')
 
@@ -46,7 +46,47 @@
             <p class="lead mb-0">Uji dan asah pemahamanmu melalui kuis-kuis seru di bawah ini!</p>
         </div>
 
-        @if($quizzes->isNotEmpty())
+        {{-- Tampilkan daftar folder/kategori --}}
+        <div class="mb-4">
+            <div class="d-flex flex-wrap gap-3">
+                @foreach($folders as $folder)
+                    <a href="?folder={{ urlencode($folder) }}" class="btn btn-outline-primary d-flex align-items-center" style="min-width:150px;">
+                        <i class="fas fa-folder fa-lg me-2"></i> {{ $folder }}
+                    </a>
+                @endforeach
+            </div>
+        </div>
+
+        {{-- Jika folder dipilih, tampilkan quiz di dalamnya --}}
+        @if($selectedFolder)
+            <h4 class="mb-3"><i class="fas fa-folder-open me-2"></i> {{ $selectedFolder }}</h4>
+            @if($quizzes->isNotEmpty())
+                <div class="row gy-4">
+                    @foreach($quizzes as $quiz)
+                    <div class="col-lg-12">
+                        <div class="card quiz-card">
+                            <div class="card-body p-4">
+                                <h5 class="card-title fw-bold mb-3"><i class="fas fa-puzzle-piece me-2" style="color:#8b5cf6;"></i>{{ $quiz->title }}</h5>
+                                <div class="quiz-embed-container">
+                                    <iframe
+                                        src="{{ $quiz->quiz_link }}"
+                                        frameborder="0"
+                                        allowfullscreen
+                                    ></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            @else
+                <p>Tidak ada quiz di folder ini.</p>
+            @endif
+        @else
+            <p class="text-muted">Silakan pilih folder untuk melihat quiz di dalamnya.</p>
+        @endif
+
+        @if($quizzes->isNotEmpty() && !$selectedFolder)
             <div class="row gy-4">
                 @foreach($quizzes as $quiz)
                 <div class="col-lg-12">
@@ -75,4 +115,3 @@
         @endif
     </div>
     @endsection
-    

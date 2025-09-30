@@ -23,12 +23,21 @@ class SudahBayar
 
         $user = auth()->user();
         
-        // Check if user has successful payment
-        $hasPaid = Transaction::userHasPaid($user->id);
-        
-        if (!$hasPaid) {
+        // Ambil transaksi sukses terakhir
+        $trx = Transaction::where('user_id', $user->id)
+            ->where('status', 'success')
+            ->latest()
+            ->first();
+
+        if (!$trx) {
             return redirect()->route('checkout.form')
-                           ->with('error', 'Anda harus melakukan pembayaran terlebih dahulu untuk mengakses halaman ini.');
+                ->with('error', 'Anda harus melakukan pembayaran terlebih dahulu untuk mengakses halaman ini.');
+        }
+
+        // Cek expired
+        if ($trx->expired_at && now()->greaterThan($trx->expired_at)) {
+            return redirect()->route('checkout.form')
+                ->with('error', 'Langganan Anda telah kedaluwarsa. Silakan perpanjang untuk mengakses konten.');
         }
 
         return $next($request);

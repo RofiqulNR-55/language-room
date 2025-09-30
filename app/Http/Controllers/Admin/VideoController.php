@@ -17,7 +17,8 @@ class VideoController extends Controller
 
     public function create()
     {
-        return view('admin.video.create');
+        $folders = Video::whereNotNull('folder')->pluck('folder')->unique();
+        return view('admin.video.create', compact('folders'));
     }
 
     public function store(Request $request)
@@ -26,6 +27,7 @@ class VideoController extends Controller
             'judul' => 'required|string',
             'deskripsi' => 'nullable|string',
             'jenjang' => 'required|in:sd,smp,sma',
+            'tipe' => 'required|in:link,file',
             'url' => 'nullable|url',
             'video_file' => 'nullable|file|mimes:mp4|max:102400',
         ]);
@@ -34,12 +36,20 @@ class VideoController extends Controller
         $video->judul = $request->judul;
         $video->deskripsi = $request->deskripsi;
         $video->jenjang = $request->jenjang;
+        $video->tipe = $request->tipe;
+        $folder = $request->folder;
+        if ($folder === '__new__') {
+            $folder = $request->folder_new;
+        }
+        $video->folder = $folder;
 
-        if ($request->hasFile('video_file')) {
+        if ($request->tipe === 'file' && $request->hasFile('video_file')) {
             $path = $request->file('video_file')->store('video', 'public');
             $video->url = $path;
-        } else {
+        } elseif ($request->tipe === 'link') {
             $video->url = $request->url;
+        } else {
+            $video->url = null;
         }
 
         $video->save();
@@ -49,7 +59,8 @@ class VideoController extends Controller
 
     public function edit(Video $video)
     {
-        return view('admin.video.edit', compact('video'));
+        $folders = Video::whereNotNull('folder')->pluck('folder')->unique();
+        return view('admin.video.edit', compact('video', 'folders'));
     }
 
     public function update(Request $request, Video $video)
@@ -58,6 +69,7 @@ class VideoController extends Controller
             'judul' => 'required|string',
             'deskripsi' => 'nullable|string',
             'jenjang' => 'required|in:sd,smp,sma',
+            'tipe' => 'required|in:link,file',
             'url' => 'nullable|url',
             'video_file' => 'nullable|file|mimes:mp4|max:102400',
         ]);
@@ -65,15 +77,24 @@ class VideoController extends Controller
         $video->judul = $request->judul;
         $video->deskripsi = $request->deskripsi;
         $video->jenjang = $request->jenjang;
+        $video->tipe = $request->tipe;
+        $folder = $request->folder;
+        if ($folder === '__new__') {
+            $folder = $request->folder_new;
+        }
+        $video->folder = $folder;
 
-        if ($request->hasFile('video_file')) {
+        if ($request->tipe === 'file' && $request->hasFile('video_file')) {
             if ($video->url && Storage::disk('public')->exists($video->url)) {
                 Storage::disk('public')->delete($video->url);
             }
-
             $path = $request->file('video_file')->store('video', 'public');
             $video->url = $path;
-        } else {
+        } elseif ($request->tipe === 'link') {
+            // Jika sebelumnya file, hapus file lama
+            if ($video->tipe === 'file' && $video->url && Storage::disk('public')->exists($video->url)) {
+                Storage::disk('public')->delete($video->url);
+            }
             $video->url = $request->url;
         }
 

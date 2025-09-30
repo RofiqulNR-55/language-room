@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Paket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PaketController extends Controller
 {
@@ -70,13 +71,10 @@ class PaketController extends Controller
 
     /**
      * Menghapus paket dari database.
-     * INI BAGIAN YANG DIPERBAIKI.
      */
     public function destroy(Paket $paket)
     {
         $paket->delete();
-
-        // Baris ini penting untuk mengarahkan kembali setelah hapus.
         return redirect()->route('admin.paket.index')->with('success', 'Paket berhasil dihapus.');
     }
 

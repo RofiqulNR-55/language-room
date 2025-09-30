@@ -10,6 +10,8 @@ class Transaction extends Model
     
     protected $fillable = ['user_id', 'paket_id', 'order_id', 'status'];
 
+    protected $dates = ['start_at', 'expired_at'];
+
     public function user()
     {
         return $this->belongsTo(User::class);

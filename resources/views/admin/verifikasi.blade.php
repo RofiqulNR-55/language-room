@@ -2,86 +2,75 @@
 
 @section('title', 'Verifikasi Transaksi')
 
-@section('content')
-<link rel="stylesheet" href="{{ asset('css/verifikasi.css') }}">
+<link rel="stylesheet" href="{{ asset('css/verify.css') }}">
 
+
+@section('content')
 <div class="container-fluid">
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Verifikasi & Tinjau Transaksi</h1>
+    {{-- Header Halaman --}}
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3 mb-0 text-gray-800 fw-bold">Transaksi</h1>
     </div>
 
+    {{-- Alert untuk Notifikasi Sukses --}}
     @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     @endif
 
-    <div class="row">
-        <div class="col-12">
-            <div class="card shadow mb-4 card-table">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Daftar Transaksi Tertunda</h6>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>User</th>
-                                    <th>Paket</th>
-                                    <th>Order ID</th>
-                                    <th>Status</th>
-                                    <th style="width: 25%;">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse($transaksis as $key => $trx)
-                                <tr>
-                                    <td>{{ $key + 1 }}</td>
-                                    <td>{{ $trx->user->name }}</td>
-                                    <td>{{ $trx->paket->tipe ?? 'N/A' }}</td>
-                                    <td>{{ $trx->order_id }}</td>
-                                    <td>
-                                        @if($trx->status == 'pending')
-                                            <span class="badge bg-warning text-dark">Pending</span>
-                                        @elseif($trx->status == 'failed')
-                                            <span class="badge bg-danger">Gagal</span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if($trx->status == 'pending')
-                                            {{-- Tombol untuk Menyetujui --}}
-                                            <form action="{{ route('admin.verifikasi.verify', $trx->id) }}" method="POST" class="d-inline">
-                                                @csrf
-                                                <button class="btn btn-success btn-sm">Setujui</button>
-                                            </form>
-
-                                            {{-- Tombol untuk Menolak --}}
-                                            <form action="{{ route('admin.verifikasi.reject', $trx->id) }}" method="POST" class="d-inline">
-                                                @csrf
-                                                <button class="btn btn-secondary btn-sm">Tolak</button>
-                                            </form>
-                                        @endif
-
-                                        @if($trx->status == 'failed')
-                                             {{-- Tombol untuk Menghapus --}}
-                                             <form action="{{ route('admin.verifikasi.destroy', $trx->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus transaksi ini secara permanen?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="btn btn-danger btn-sm">Hapus</button>
-                                            </form>
-                                        @endif
-                                    </td>
-                                </tr>
-                                @empty
-                                <tr>
-                                    <td colspan="6" class="text-center">Tidak ada transaksi yang perlu ditinjau.</td>
-                                </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+    {{-- Card untuk Tabel Data dengan kelas kustom --}}
+    <div class="card custom-card mb-4">
+        <div class="card-header bg-transparent py-3">
+            <h6 class="m-0 fw-bold text-primary">Riwayat Transaksi terbaru</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="custom-header">
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Pelanggan</th>
+                            <th scope="col">Paket</th>
+                            <th scope="col">Order ID</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Tanggal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($transaksis as $key => $trx)
+                        <tr>
+                            <td class="fw-semibold">{{ $key + 1 }}</td>
+                            <td>{{ $trx->user->name ?? 'User Dihapus' }}</td>
+                            <td>{{ $trx->paket->tipe ?? 'N/A' }}</td>
+                            <td class="font-monospace">{{ $trx->order_id }}</td>
+                            <td>
+                                @if($trx->status == 'pending')
+                                    <span class="status-badge pending"><i class="fas fa-clock me-1"></i> Pending</span>
+                                @elseif($trx->status == 'failed' || $trx->status == 'cancel' || $trx->status == 'expire')
+                                    <span class="status-badge failed"><i class="fas fa-times-circle me-1"></i> Gagal</span>
+                                @elseif($trx->status == 'success' || $trx->status == 'settlement')
+                                    <span class="status-badge success"><i class="fas fa-check-circle me-1"></i> Berhasil</span>
+                                @else
+                                    <span class="badge bg-secondary">{{ ucfirst($trx->status) }}</span>
+                                @endif
+                            </td>
+                            <td>{{ $trx->created_at->format('d M Y, H:i') }}</td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="6" class="text-center text-muted py-5">
+                                <i class="fas fa-folder-open fa-2x mb-3"></i>
+                                <p class="mb-0">Tidak ada data transaksi yang ditemukan.</p>
+                            </td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                </table>
             </div>
+
+            
         </div>
     </div>
 </div>

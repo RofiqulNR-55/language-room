@@ -10,12 +10,14 @@
 
     <a href="{{ route('admin.modul.create') }}" class="btn btn-primary mb-3">Tambah Modul</a>
 
-    <table class="table table-bordered table-striped">
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
         <thead class="table-dark">
             <tr>
                 <th>#</th>
                 <th>Judul Modul</th>
                 <th>Jenjang</th>
+                <th>Folder</th>
                 <th>File</th>
                 <th>Aksi</th>
             </tr>
@@ -26,6 +28,7 @@
                     <td>{{ $index + 1 }}</td>
                     <td>{{ $modul->judul }}</td>
                     <td>{{ strtoupper($modul->jenjang) }}</td>
+                    <td>{{ $modul->folder }}</td>
                     <td>
                         <a href="{{ asset('storage/' . $modul->file) }}" target="_blank">Lihat PDF</a>
                     </td>
@@ -40,7 +43,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="5" class="text-center">Belum ada modul.</td>
+                    <td colspan="6" class="text-center">Belum ada modul.</td>
                 </tr>
             @endforelse
         </tbody>

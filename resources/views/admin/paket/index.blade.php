@@ -26,6 +26,7 @@
                             <th>Nama</th>
                             <th>Tipe</th>
                             <th>Harga</th>
+                            <th>Durasi</th>
                             <th>Deskripsi</th>
                             <th class="text-center">Aksi</th>
                         </tr>
@@ -37,6 +38,7 @@
                                 <td>{{ $paket->nama }}</td>
                                 <td>{{ ucfirst($paket->tipe) }}</td>
                                 <td>Rp {{ number_format($paket->harga, 0, ',', '.') }}</td>
+                                <td>{{ $paket->durasi }} hari</td>
                                 <td>{{ Str::limit($paket->deskripsi, 50) }}</td>
                                 <td class="text-center">
                                     <a href="{{ route('admin.paket.edit', $paket->id) }}" class="btn btn-warning btn-sm">Edit</a>
