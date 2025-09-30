@@ -1,4 +1,3 @@
-
 @extends('layouts.admin') {{-- Sesuaikan dengan layout admin Anda --}}
 
 @section('content')
@@ -16,6 +15,7 @@
             <tr>
                 <th>Judul</th>
                 <th>Jenjang</th>
+                <th>Folder</th>
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -24,6 +24,7 @@
             <tr>
                 <td>{{ $quiz->title }}</td>
                 <td>{{ strtoupper($quiz->jenjang) }}</td>
+                <td>{{ $quiz->folder }}</td>
                 <td>
                     <a href="{{ route('admin.quiz.edit', $quiz) }}" class="btn btn-warning btn-sm">Edit</a>
                     <form action="{{ route('admin.quiz.destroy', $quiz) }}" method="POST" style="display:inline-block;">

@@ -17,6 +17,11 @@ use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\MidtransCallbackController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\TestimonialController;
+use Illuminate\Support\Facades\Auth;
+
+Route::get('/', function () {
+    return view('landing.index');
+});
 
 /*
 |--------------------------------------------------------------------------

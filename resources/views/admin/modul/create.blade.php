@@ -36,19 +36,18 @@
 
                 <div class="mb-3">
                     <label for="folder" class="form-label">Folder/Kategori Modul</label>
-                    <select name="folder" id="folder" class="form-control" onchange="toggleFolderInput(this.value)">
-                        <option value="">-- Pilih Folder/Kategori --</option>
+                    <input type="text" name="folder" id="folder" class="form-control" list="folderList" placeholder="Ketik atau pilih folder" required>
+                    <datalist id="folderList">
                         @foreach($folders as $folder)
-                            <option value="{{ $folder }}">{{ $folder }}</option>
-                @endforeach
-                <option value="__new__">+ Buat Folder Baru</option>
-            </select>
-                    <input type="text" name="folder_new" id="folder_new" class="form-control mt-2 d-none" placeholder="Nama folder baru">
+                            <option value="{{ $folder }}">
+                        @endforeach
+                    </datalist>
                 </div>
 
                 <div class="mb-3">
                     <label for="file" class="form-label">File Modul</label>
                     <input type="file" name="file" id="file" class="form-control" required>
+                    <small class="form-text text-muted">Bisa upload PDF, DOC, DOCX, PPT, dll.</small>
                 </div>
 
                 <div class="row">
@@ -67,19 +66,25 @@
 
 @section('scripts')
 <script>
-function toggleFolderInput(val) {
-    const input = document.getElementById('folder_new');
-    if (val === '__new__') {
-        input.classList.remove('d-none');
-        input.required = true;
-    } else {
-        input.classList.add('d-none');
-        input.required = false;
-    }
-}
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('folder').addEventListener('change', function() {
-        toggleFolderInput(this.value);
+    const folderInput = document.getElementById('folder');
+    folderInput.addEventListener('input', function() {
+        const value = this.value;
+        const dataList = document.getElementById('folderList');
+        let optionExists = false;
+
+        for (let i = 0; i < dataList.options.length; i++) {
+            if (dataList.options[i].value === value) {
+                optionExists = true;
+                break;
+            }
+        }
+
+        if (!optionExists) {
+            const newOption = document.createElement('option');
+            newOption.value = value;
+            dataList.appendChild(newOption);
+        }
     });
 });
 </script>

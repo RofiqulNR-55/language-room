@@ -37,7 +37,7 @@ class QuizController extends Controller
         $data['folder'] = $folder;
         Quiz::create($data);
 
-        return redirect()->route('quiz.index')->with('success', 'Kuis berhasil ditambahkan.');
+        return redirect()->route('admin.quiz.index')->with('success', 'Kuis berhasil ditambahkan.');
     }
 
     public function edit(Quiz $quiz)

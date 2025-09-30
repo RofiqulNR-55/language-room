@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-4">
+<div class="container-fluid mt-4">
     <div class="text-center mb-5">
         <h1 class="fw-bolder">Video Pembelajaran Jenjang {{ strtoupper($jenjang) }}</h1>
         <p class="lead text-muted">Tonton video-video pilihan untuk membantumu belajar.</p>
@@ -28,21 +28,14 @@
                         <div class="card h-100 shadow-sm border-0 rounded-4">
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title fw-bold mb-3">{{ $video->judul }}</h5>
-                                <div class="ratio ratio-16x9 rounded-3 mb-3">
-                                    @if(isset($video->tipe) && $video->tipe === 'file')
-                                        <video controls preload="metadata">
+                                <div class="text-center my-3">
+                                    @if (Str::startsWith($video->url, 'http'))
+                                        <iframe width="100%" style="max-width:600px; height:340px;" src="{{ $video->url }}" class="mx-auto d-block rounded shadow" allowfullscreen></iframe>
+                                    @else
+                                        <video width="100%" style="max-width:600px; height:340px;" controls class="mx-auto d-block rounded shadow">
                                             <source src="{{ asset('storage/' . $video->url) }}" type="video/mp4">
                                             Browser Anda tidak mendukung tag video.
                                         </video>
-                                    @else
-                                        @php
-                                            $embedUrl = preg_replace(
-                                                "/\s*[a-zA-Z\/\/:\.]*youtu(be.com\/watch\?v=|.be\/)([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i",
-                                                "https://www.youtube.com/embed/$2",
-                                                $video->url
-                                            );
-                                        @endphp
-                                        <iframe src="{{ $embedUrl }}" title="{{ $video->judul }}" frameborder="0" allowfullscreen></iframe>
                                     @endif
                                 </div>
                                 <div class="mt-auto">

@@ -20,11 +20,12 @@
 
             // Jika ada folder dipilih, tampilkan quiz di folder itu
             $selectedFolder = $request->query('folder');
-            $quizzes = collect();
             if ($selectedFolder) {
                 $quizzes = Quiz::where('jenjang', $paket)
                     ->where('folder', $selectedFolder)
                     ->get();
+            } else {
+                $quizzes = Quiz::where('jenjang', $paket)->get();
             }
 
             return view('quiz.index', [

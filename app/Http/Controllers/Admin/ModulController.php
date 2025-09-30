@@ -27,7 +27,7 @@ class ModulController extends Controller
             'judul' => 'required|string|max:255',
             'jenjang' => 'required|string|in:sd,smp,sma',
             'folder' => 'required|string|max:255',
-            'file' => 'required|mimes:pdf|max:2048',
+            'file' => 'required|mimes:pdf,doc,docx,ppt,pptx,xls,xlsx|max:5120',
         ]);
 
         // Simpan file ke storage/app/public/modul
@@ -60,7 +60,7 @@ class ModulController extends Controller
             'judul' => 'required',
             'jenjang' => 'required|in:sd,smp,sma',
             'folder' => 'required|string|max:255',
-            'file' => 'nullable|mimes:pdf|max:2048',
+            'file' => 'nullable|mimes:pdf,doc,docx,ppt,pptx,xls,xlsx|max:5120',
         ]);
 
         if ($request->hasFile('file')) {

@@ -34,14 +34,12 @@
                         {{-- Folder/Kategori Video --}}
                         <div class="mb-3">
                             <label for="folder" class="form-label">Folder/Kategori Video</label>
-                            <select name="folder" id="folder" class="form-select" onchange="toggleFolderInput(this.value)">
-                                <option value="">-- Pilih Folder/Kategori --</option>
+                            <input type="text" name="folder" id="folder" class="form-control" list="folderList" placeholder="Ketik atau pilih folder" required>
+                            <datalist id="folderList">
                                 @foreach($folders as $folder)
-                                    <option value="{{ $folder }}">{{ $folder }}</option>
+                                    <option value="{{ $folder }}">
                                 @endforeach
-                                <option value="__new__">+ Buat Folder Baru</option>
-                            </select>
-                            <input type="text" name="folder_new" id="folder_new" class="form-control mt-2 d-none" placeholder="Nama folder baru">
+                            </datalist>
                         </div>
 
 
