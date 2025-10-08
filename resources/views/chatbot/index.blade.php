@@ -179,9 +179,13 @@
         const result = await response.json();
 
         if (!response.ok) {
-            throw new Error(result.error || 'Unknown server error');
+            // Tampilkan error detail (status dan body) jika ada
+            let errorDetail = '';
+            if (result.body) {
+                errorDetail = `<br><b>Status:</b> ${result.status}<br><b>Detail:</b> <pre style="white-space:pre-wrap;word-break:break-all;background:#f3f3f3;padding:6px;border-radius:4px;max-width:320px;overflow-x:auto;">${JSON.stringify(result.body, null, 2)}</pre>`;
+            }
+            throw new Error((result.reply || result.error || 'Unknown server error') + errorDetail);
         }
-        
         return result.reply;
     }
 </script>

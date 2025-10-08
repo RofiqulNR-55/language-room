@@ -55,7 +55,7 @@
                             </div>
                             <div>
                                 <h6 class="mb-0 fw-bold">Alamat</h6>
-                                <p class="mb-0 text-muted">Jl. Pendidikan No. 123, Kota Harapan</p>
+                                <p class="mb-0 text-muted">jalan Darul Fahur, Pejarakan Karya, Ampenan</p>
                             </div>
                         </li>
                         <li class="list-group-item d-flex align-items-center border-0 px-0 pt-3">
@@ -85,20 +85,21 @@
         <div class="col-lg-6">
             <div class="card card-contact h-100 shadow-sm">
                 <div class="card-body p-4">
-                     <h3 class="card-title fw-bold mb-4">Lokasi Kami</h3>
-                     <div class="map-container shadow-inner">
+                    <h3 class="card-title fw-bold mb-4">Lokasi Kami</h3>
+                    <div class="map-container shadow-inner">
                         <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322221!2d106.8195888147682!3d-6.194741995514697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5390917b759%3A0x6b45e67356080477!2sMonumen%20Nasional!5e0!3m2!1sid!2sid!4v1678889123456!5m2!1sid!2sid"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945.323565261314!2d116.08271791478335!3d-8.583095393848135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdbdc1d85b191b%3A0x6a12724497334181!2sJl.%20Darul%20Fahur%2C%20Pejarakan%20Karya%2C%20Kec.%20Ampenan%2C%20Kota%20Mataram%2C%20Nusa%20Tenggara%20Barat!5e0!3m2!1sen!2sid!4v1628109876543!5m2!1sen!2sid"
                             width="100%" 
                             height="340" 
                             style="border:0;" 
                             allowfullscreen="" 
-                            loading="lazy">
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
-                     </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </main>
-@endsection
+@endsection 

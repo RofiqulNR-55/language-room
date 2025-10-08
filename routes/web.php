@@ -102,3 +102,5 @@ Route::post('/ai-tutor/chat', [ChatbotController::class, 'chat'])->name('chatbot
 // Ganti atau tambahkan rute ini
 Route::get('/kontak', [ContactController::class, 'index'])->name('kontak');
 Route::post('/kontak/send', [ContactController::class, 'send'])->name('kontak.send');
+
+Route::get('/list-models', [ChatbotController::class, 'listAvailableModels']);
