@@ -1,5 +1,5 @@
 [phases.setup]
-# Pilih salah satu: php81 / php82 / php83
+# php versi baru + composer + ekstensi + nodejs LTS
 nixPkgs = [
   "php82",
   "php82Packages.composer",
@@ -11,12 +11,20 @@ nixPkgs = [
   "php82Extensions.curl",
   "php82Extensions.bcmath",
   "php82Extensions.exif",
-  "php82Extensions.opcache"
+  "php82Extensions.opcache",
+  "nodejs_20"
+]
+
+[phases.install]
+cmds = [
+  "composer install --no-dev --optimize-autoloader",
+  "npm ci"
 ]
 
 [phases.build]
-cmds = ["composer install --no-dev --optimize-autoloader"]
+# sesuaikan dengan project-mu (React/Vite/Laravel Mix/Encore, dll)
+cmds = ["npm run build"]
 
 [start]
-# sesuaikan jika kamu pakai framework lain
+# contoh start php sederhana (ubah sesuai stack kamu)
 cmd = "php -S 0.0.0.0:${PORT:-8080} -t public"
