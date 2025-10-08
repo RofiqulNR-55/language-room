@@ -39,6 +39,46 @@
     "isEntry": true,
     "src": "public/css/verify.css"
   },
+  "public/images/gambar1.jpg": {
+    "file": "assets/gambar1-4ed993c7.js",
+    "isEntry": true,
+    "src": "public/images/gambar1.jpg"
+  },
+  "public/images/gambar2.jpg": {
+    "file": "assets/gambar2-4ed993c7.js",
+    "isEntry": true,
+    "src": "public/images/gambar2.jpg"
+  },
+  "public/images/gambar3.jpg": {
+    "file": "assets/gambar3-4ed993c7.js",
+    "isEntry": true,
+    "src": "public/images/gambar3.jpg"
+  },
+  "public/images/gambar4.jpg": {
+    "file": "assets/gambar4-4ed993c7.js",
+    "isEntry": true,
+    "src": "public/images/gambar4.jpg"
+  },
+  "public/images/gambar5.jpg": {
+    "file": "assets/gambar5-4ed993c7.js",
+    "isEntry": true,
+    "src": "public/images/gambar5.jpg"
+  },
+  "public/videos/video1.mp4": {
+    "file": "assets/video1-4ed993c7.js",
+    "isEntry": true,
+    "src": "public/videos/video1.mp4"
+  },
+  "public/videos/video2.mp4": {
+    "file": "assets/video2-4ed993c7.js",
+    "isEntry": true,
+    "src": "public/videos/video2.mp4"
+  },
+  "public/videos/video3.mp4": {
+    "file": "assets/video3-4ed993c7.js",
+    "isEntry": true,
+    "src": "public/videos/video3.mp4"
+  },
   "resources/css/app.css": {
     "file": "assets/app-fb349da9.css",
     "isEntry": true,

@@ -15,7 +15,16 @@ export default defineConfig({
                 'public/css/navbar.css',
                 'public/css/paket.css',
                 'public/css/verify.css',
-                // tambahkan file CSS lainnya di sini
+
+                'public/images/gambar1.jpg',
+                'public/images/gambar2.jpg',
+                'public/images/gambar3.jpg',
+                'public/images/gambar4.jpg',
+                'public/images/gambar5.jpg',
+                
+                'public/videos/video1.mp4',
+                'public/videos/video2.mp4',
+                'public/videos/video3.mp4',
             ],
             refresh: true,
         }),

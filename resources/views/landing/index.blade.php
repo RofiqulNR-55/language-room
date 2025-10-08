@@ -4,7 +4,8 @@
 {{-- Untuk hasil terbaik, tambahkan link Google Fonts ini di file layouts/app.blade.php Anda, di dalam tag <head> --}}
 {{-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> --}}
 
-<link rel="stylesheet" href="{{ asset('css/landing.css') }}">
+{{-- <link rel="stylesheet" href="{{ asset('css/landing.css') }}"> --}}
+@vite(['public/css/landing.css'])
 
 <div class="container-fluid hero-section d-flex align-items-center justify-content-center">
     <div class="row w-100 align-items-center">
@@ -71,18 +72,18 @@
         
         <div class="gallery-container">
             <div class="gallery-item item-potrait fade-in">
-                <img src="{{ asset('images/gambar1.jpg') }}" alt="Kegiatan Belajar 1">
+                <img src="{{ Vite::asset('public/images/gambar1.jpg') }}" alt="Kegiatan Belajar 1">
                 <div class="overlay"><div class="overlay-title">Pembelajaran</div></div>
             </div>
 
             <div class="gallery-item fade-in">
-                <img src="{{ asset('images/gambar4.jpg') }}" alt="Kegiatan Belajar 2">
+                <img src="{{ Vite::asset('public/images/gambar4.jpg') }}" alt="Kegiatan Belajar 2">
                 <div class="overlay"><div class="overlay-title"></div></div>
             </div>
             
             <div class="gallery-item item-potrait video-item fade-in">
                 <video autoplay muted loop playsinline controls>
-                    <source src="{{ asset('videos/video1.mp4') }}" type="video/mp4">
+                    <source src="{{ Vite::asset('public/videos/video1.mp4') }}" type="video/mp4">
                     Browser Anda tidak mendukung tag video.
                 </video>
             </div>
