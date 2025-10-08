@@ -72,18 +72,18 @@
         
         <div class="gallery-container">
             <div class="gallery-item item-potrait fade-in">
-                <img src="{{ Vite::asset('public/images/gambar1.jpg') }}" alt="Kegiatan Belajar 1">
+                <img src="{{ asset('images/gambar1.jpg') }}" alt="Kegiatan Belajar 1">
                 <div class="overlay"><div class="overlay-title">Pembelajaran</div></div>
             </div>
 
             <div class="gallery-item fade-in">
-                <img src="{{ Vite::asset('public/images/gambar4.jpg') }}" alt="Kegiatan Belajar 2">
+                <img src="{{ asset('images/gambar4.jpg') }}" alt="Kegiatan Belajar 2">
                 <div class="overlay"><div class="overlay-title"></div></div>
             </div>
             
             <div class="gallery-item item-potrait video-item fade-in">
                 <video autoplay muted loop playsinline controls>
-                    <source src="{{ Vite::asset('public/videos/video1.mp4') }}" type="video/mp4">
+                    <source src="{{ asset('videos/video1.mp4') }}" type="video/mp4">
                     Browser Anda tidak mendukung tag video.
                 </video>
             </div>
