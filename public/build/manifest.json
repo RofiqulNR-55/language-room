@@ -1,4 +1,44 @@
 {
+  "public/css/admin.css": {
+    "file": "assets/admin-853a8665.css",
+    "isEntry": true,
+    "src": "public/css/admin.css"
+  },
+  "public/css/dashboard.css": {
+    "file": "assets/dashboard-76038cdc.css",
+    "isEntry": true,
+    "src": "public/css/dashboard.css"
+  },
+  "public/css/kontak.css": {
+    "file": "assets/kontak-b74664f2.css",
+    "isEntry": true,
+    "src": "public/css/kontak.css"
+  },
+  "public/css/landing.css": {
+    "file": "assets/landing-a18fe730.css",
+    "isEntry": true,
+    "src": "public/css/landing.css"
+  },
+  "public/css/media-pembelajaran.css": {
+    "file": "assets/media-pembelajaran-6c01f393.css",
+    "isEntry": true,
+    "src": "public/css/media-pembelajaran.css"
+  },
+  "public/css/navbar.css": {
+    "file": "assets/navbar-576719fd.css",
+    "isEntry": true,
+    "src": "public/css/navbar.css"
+  },
+  "public/css/paket.css": {
+    "file": "assets/paket-8cbbdb73.css",
+    "isEntry": true,
+    "src": "public/css/paket.css"
+  },
+  "public/css/verify.css": {
+    "file": "assets/verify-b15746b6.css",
+    "isEntry": true,
+    "src": "public/css/verify.css"
+  },
   "resources/css/app.css": {
     "file": "assets/app-fb349da9.css",
     "isEntry": true,
